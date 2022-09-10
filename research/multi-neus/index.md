@@ -8,14 +8,19 @@ title: ""
 
     .title {text-align: center; margin: 0px;}
 
-    .authors {font-size: 90%; text-align: center; margin-bottom: 0px;}
-    .authors td {border: none; text-align: center;}
+    .no-border-table {font-size: 90%; text-align: center;}
+    .no-border-table td {border: none; text-align: center;}
 
-    .affiliations {font-size: 90%; text-align: center; margin: 0px; }
-    .affiliations td {border: none; text-align: center;}
+    .authors {margin-bottom: 0px; background-color: #e5e5e5;}
 
-    .image-grid {font-size: 90%; text-align: center; margin: 0px; }
-    .image-grid td {border: none; text-align: center;}
+    .affiliations {margin: 0px;}
+    .affiliations td {background-color: #f3f3f3;}
+
+    .video-grid td {background-color: #ffffff; padding: 1%;}
+    table.video-grid img, video {
+      width: 100%;
+      /*padding: 2% 2% 2% 2%;*/
+    }
 
     table.resource-links td {
       border: none;
@@ -35,13 +40,25 @@ title: ""
 {: .title}
 
 |Egor Burkov<sup>1</sup> |Ruslan Rakhimov<sup>1</sup> |Aleksandr Safin<sup>1</sup> |Evgeny Burnaev<sup>12</sup> |Victor Lempitsky<sup>3</sup> |
-{: .authors}
+{: .no-border-table .authors}
 
 |<sup>1</sup>[Skoltech](https://www.skoltech.ru/) |<sup>2</sup>[AIRI](https://airi.net/) |<sup>3</sup>[Cinemersive Labs](https://www.cinemersivelabs.com/) |
-{: .affiliations}
+{: .no-border-table .affiliations}
 
-|image_original|gif_rgb|git_normals|image_original|gif_rgb|git_normals|
-{: .image-grid}
+<table class="no-border-table video-grid">
+  <tr>
+    <td width="10%"></td>
+    <td width="26.6666%"><img src="elon.jpg" /></td>
+    <td><video autoplay loop src="elon.mp4" /></td>
+    <td width="10%"></td>
+  </tr>
+  <tr>
+    <td width="10%"></td>
+    <td width="26.6666%"><img src="botticelli.jpg" /></td>
+    <td><video autoplay loop src="botticelli.mp4" /></td>
+    <td width="10%"></td>
+  </tr>
+</table>
 
 ### Abstract
 
@@ -49,3 +66,7 @@ We present an approach for the reconstruction of textured 3D meshes of human hea
 
 |<a href="https://arxiv.org/pdf/xxxx.xxxxx"><img src="/research/resource-images/pdf.svg"><br>Full Paper</a>|<img src="/research/resource-images/work-in-progress.svg"><br>Source Code|<a href="https://dblp.uni-trier.de/rec/journals/corr/abs-xxxx-xxxxx.html?view=bibtex"><img src="/research/resource-images/bibtex.svg"><br>BibTeX Citation</a>|
 {: .resource-links}
+
+### Additional Results
+
+<video preload="none" controls src="additional-results.mp4" />
