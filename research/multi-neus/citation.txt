@@ -1,0 +1,17 @@
+@misc{https://doi.org/10.48550/arxiv.2209.04436,
+  doi = {10.48550/ARXIV.2209.04436},
+  
+  url = {https://arxiv.org/abs/2209.04436},
+  
+  author = {Burkov, Egor and Rakhimov, Ruslan and Safin, Aleksandr and Burnaev, Evgeny and Lempitsky, Victor},
+  
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), FOS: Computer and information sciences, FOS: Computer and information sciences, I.2.10},
+  
+  title = {Multi-NeuS: 3D Head Portraits from Single Image with Neural Implicit Functions},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {Creative Commons Attribution 4.0 International}
+}
