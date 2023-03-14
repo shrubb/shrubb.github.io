@@ -1,0 +1,8 @@
+@InProceedings{Burkov_2020_CVPR,
+author = {Burkov, Egor and Pasechnik, Igor and Grigorev, Artur and Lempitsky, Victor},
+title = {Neural Head Reenactment with Latent Pose Descriptors},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2020}
+}
+

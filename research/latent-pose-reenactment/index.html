@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Neural Head Reenactment with Latent Pose Descriptors</title>
+
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Open+Sans:300italic,400italic,600italic,400,700,300,600" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="container">
+
+  <center>
+    <div class="title">Neural Head Reenactment with Latent Pose Descriptors</div>
+  </center>
+
+  <center>
+    <div class="row row-eq-height" style="margin-bottom: 10px">
+      <div class="col-sm-15">
+        <div class="col-sm-3" style="margin-bottom: 10px">
+          <a href="mailto:shrubb@ya.ru">
+              <div class="author"><span style="font-weight: bolder; color: #444">Egor Burkov<sup>1,2</sup></span></div>
+          </a>
+        </div>
+        <div class="col-sm-3" style="margin-bottom: 10px">
+          <div class="author"><span style="font-weight: bolder; color: #444">Igor Pasechnik<sup>1</sup></span></div>
+        </div>
+        <div class="col-sm-3" style="margin-bottom: 10px">
+          <div class="author"><span style="font-weight: bolder; color: #444">Artur Grigorev<sup>1</sup></span></div>
+        </div>
+        <div class="col-sm-3" style="margin-bottom: 10px">
+          <div class="author"><span style="font-weight: bolder; color: #444">Victor Lempitsky<sup>1,2</sup></span></div>
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-2" style="margin-bottom: 10px">
+          <a href="https://research.samsung.com/aicenter_moscow">
+          <div class="university"><span style="font-weight: normal; color: #444"><sup>1</sup>Samsung AI Center, Moscow</span></div>
+          </a>
+        </div>
+
+        <div class="col-sm-6" style="margin-bottom: 10px">
+          <a href="https://www.skoltech.ru/en/">
+          <div class="university"><span style="font-weight: normal; color: #444"><sup>2</sup>Skolkovo Institute of Science and Technology, Moscow</span></div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <h3>CVPR 2020</h3>
+  </center>
+  <br>
+
+  <center>
+    <table class="image-grid" style="width:100%">
+      <tr>
+        <td><img src="images/teaser/1_driver.jpg"></td>
+        <td><img src="images/teaser/2_driver.jpg"></td>
+        <td><img src="images/teaser/3_driver.jpg"></td>
+        <td><img src="images/teaser/4_driver.jpg"></td>
+        <td><img src="images/teaser/5_driver.jpg"></td>
+        <td><img src="images/teaser/6_driver.jpg"></td>
+        <td><img src="images/teaser/7_driver.jpg"></td>
+        <td><img src="images/teaser/8_driver.jpg"></td>
+      </tr>
+
+      <tr>
+        <td><img src="images/teaser/1_result.jpg"></td>
+        <td><img src="images/teaser/2_result.jpg"></td>
+        <td><img src="images/teaser/3_result.jpg"></td>
+        <td><img src="images/teaser/4_result.jpg"></td>
+        <td><img src="images/teaser/5_result.jpg"></td>
+        <td><img src="images/teaser/6_result.jpg"></td>
+        <td><img src="images/teaser/7_result.jpg"></td>
+        <td><img src="images/teaser/8_result.jpg"></td>
+      </tr>
+    </table>
+  </center>
+  <br>
+
+  <center>
+    <iframe src="https://www.youtube.com/embed/CFPTycDPYF8"
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen style="width: 70em; height: 42em;"></iframe>
+  </center>
+  <br>
+
+  <center>
+    <table class="resource-links">
+      <tr>
+        <td>
+          <a href="https://arxiv.org/pdf/2004.12000">
+            <img src="images/resource-icons/pdf.svg" class="img_links img-responsive">
+            <div class="author">Full Paper</div>
+          </a>
+        </td>
+
+        <td>
+          <a href="https://github.com/shrubb/latent-pose-reenactment">
+            <img src="images/resource-icons/python.svg" class="img_links img-responsive">
+            <div class="author">Source Code</div>
+        </td>
+
+        <td>
+          <a href="citation.txt">
+            <img src="images/resource-icons/bibtex.svg" class="img_links img-responsive">
+            <div class="author">BibTeX Citation</div>
+        </td>
+    </table>
+  </center>
+  <br>
+
+  <div class="container section">
+    <div class="section_title">Overview</div>
+
+    <ul>
+      <li>We propose a <strong>head reenactment system</strong> driven by <strong>latent pose descriptors</strong> (unlike other systems that use e.g. keypoints).</li>
+      <li>It can predict <strong>foreground segmentation</strong>.</li>
+      <li>Pose descriptors are <strong>person-agnostic</strong> and can be useful for third-party tasks (e.g. emotion recognition).</li>
+      <li>Pose-identity disentanglement happens "automatically", without special losses.</li>
+    </ul>
+  </div>
+
+  <div class="container section">
+    <div class="section_title">Algorithm</div>
+
+    <center>
+      <img src="images/pipeline.svg" style="width: 100%">
+    </center>
+
+    <ul>
+      <li>Dataset: <strong>VoxCeleb2</strong> (~100K videos of ~6K celebrities).</li>
+      <li><strong>Training</strong>: randomly pick 9 frames from a video (8 <em>identity sources</em> and 1 <em>pose source</em>); learn to reconstruct the pose source.</li>
+      <li>Impose bottlenecks: <em>pose embedding</em> and <em>identity embedding</em>.</li>
+      <li>Use <a href="https://github.com/Gaoyiminggithub/Graphonomy">Graphonomy</a> to obtain "ground truth" background masks.</li>
+      <li><strong>Inference (puppeteering)</strong>: take ≥1 images of the target person, fine-tune the generator on them.</li>
+    </ul>
+  </div>
+
+  <div class="container section">
+    <div class="section_title">Pose-Identity Disentanglement</div>
+
+    Intuitively, nothing prevents our system from encoding person-specific information into the pose embedding.
+    <br>
+    Apparently, this doesn't happen with 3 simple techniques enabled:
+    <br><br>
+
+    <ol style="margin-left: 3em;">
+      <li>Pose encoder's capacity is lower than that of the identity encoder (in our case, MobileNetV2 vs ResNeXt-50).</li>
+      <li><em>Pose augmentations</em> (transformations that preserve person's identity in an image) are applied to pose source.</li>
+      <li>Foreground mask is predicted, and reconstruction losses are applied computed with background blacked out.</li>
+    </ol>
+
+    Disabling the above techniques harms driver invariance, but improves pose encoding capability (can be useful in self-reenactment scenarios):
+    <br><br>
+
+    <center>
+      <table class="image-grid" style="width:100%">
+        <tr>
+          <td><img src="images/ablation/identity.jpg"></td>
+          <td><img src="images/ablation/0driver5.jpg"></td>
+          <td><img src="images/ablation/1_5.jpg"></td>
+          <td><img src="images/ablation/3_5.jpg"></td>
+          <td><img src="images/ablation/4_5.jpg"></td>
+          <td><img src="images/ablation/5_5.jpg"></td>
+          <td><img src="images/ablation/6_5.jpg"></td>
+        </tr>
+
+        <tr>
+          <td><img src="images/ablation/identity.jpg"></td>
+          <td><img src="images/ablation/0driver6.jpg"></td>
+          <td><img src="images/ablation/1_6.jpg"></td>
+          <td><img src="images/ablation/3_6.jpg"></td>
+          <td><img src="images/ablation/4_6.jpg"></td>
+          <td><img src="images/ablation/5_6.jpg"></td>
+          <td><img src="images/ablation/6_6.jpg"></td>
+        </tr>
+
+        <tr>
+          <td><img src="images/ablation/identity.jpg"></td>
+          <td><img src="images/ablation/0driver8.jpg"></td>
+          <td><img src="images/ablation/1_8.jpg"></td>
+          <td><img src="images/ablation/3_8.jpg"></td>
+          <td><img src="images/ablation/4_8.jpg"></td>
+          <td><img src="images/ablation/5_8.jpg"></td>
+          <td><img src="images/ablation/6_8.jpg"></td>
+        </tr>
+
+        <tr>
+          <td><strong>Identity source</strong></td>
+          <td><strong>Pose source</strong></td>
+          <td>Ours</td>
+          <td>No pose augm.</td>
+          <td>No segmentation</td>
+          <td>Heavier pose enc.</td>
+          <td>Heavier pose enc., no pose augm.</td>
+        </tr>
+      </table>
+    </center>
+
+  </div>
+
+  <div class="container section">
+    <div class="section_title">More Results</div>
+
+    <br>
+
+    <center>
+      <table class="image-grid" style="width: 100%;">
+        <tr>
+          <td rowspan=2>
+            <img src="images/more-results-1/identity.jpg">
+            <br>
+            <strong>Identity source</strong>
+          </td>
+
+          <td><img src="images/more-results-1/driver_1.jpg"></td>
+          <td><img src="images/more-results-1/driver_2.jpg"></td>
+          <td><img src="images/more-results-1/driver_3.jpg"></td>
+          <td><img src="images/more-results-1/driver_4.jpg"></td>
+          <td><img src="images/more-results-1/driver_5.jpg"></td>
+          <td><img src="images/more-results-1/driver_6.jpg"></td>
+          <td><img src="images/more-results-1/driver_7.jpg"></td>
+        </tr>
+
+        <tr>
+          <td><img src="images/more-results-1/7_1.jpg"></td>
+          <td><img src="images/more-results-1/7_2.jpg"></td>
+          <td><img src="images/more-results-1/7_3.jpg"></td>
+          <td><img src="images/more-results-1/7_4.jpg"></td>
+          <td><img src="images/more-results-1/7_5.jpg"></td>
+          <td><img src="images/more-results-1/7_6.jpg"></td>
+          <td><img src="images/more-results-1/7_7.jpg"></td>
+        </tr>
+      </table>
+    </center>
+
+    <br>
+    <br>
+
+    <center>
+      <table class="image-grid" style="width: 100%;">
+        <tr>
+          <td rowspan=2>
+            <img src="images/more-results-2/identity.jpg">
+            <br>
+            <strong>Identity source</strong>
+          </td>
+
+          <td><img src="images/more-results-2/0driver1.jpg"></td>
+          <td><img src="images/more-results-2/0driver2.jpg"></td>
+          <td><img src="images/more-results-2/0driver3.jpg"></td>
+          <td><img src="images/more-results-2/0driver4.jpg"></td>
+          <td><img src="images/more-results-2/0driver6.jpg"></td>
+          <td><img src="images/more-results-2/0driver8.jpg"></td>
+          <td><img src="images/more-results-2/0driver9.jpg"></td>
+        </tr>
+
+        <tr>
+          <td><img src="images/more-results-2/7_1.jpg"></td>
+          <td><img src="images/more-results-2/7_2.jpg"></td>
+          <td><img src="images/more-results-2/7_3.jpg"></td>
+          <td><img src="images/more-results-2/7_4.jpg"></td>
+          <td><img src="images/more-results-2/7_6.jpg"></td>
+          <td><img src="images/more-results-2/7_8.jpg"></td>
+          <td><img src="images/more-results-2/7_9.jpg"></td>
+        </tr>
+      </table>
+    </center>
+  </div>
+
+</div>
+</body>
+
+</html>
+
