@@ -2,7 +2,12 @@
 title: Egor Burkov
 ---
 
-Hi, my website is under construction. In the meantime, enjoy the ox and [my recent paper](research/multi-neus).
+## My Recent Research
+
+* 2022: [Multi-NeuS: 3D Head Portraits from Single Image with Neural Implicit Functions](research/multi-neus)
+* 2020: [Neural Head Reenactment with Latent Pose Descriptors](research/latent-pose-reenactment)
+
+---
 
 ![ox](https://perito-burrito.com/uploads/content_image/11700/medium_%D0%91%D1%8B%D0%BA.jpg.webp)
 
