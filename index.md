@@ -2,6 +2,8 @@
 title: Egor Burkov
 ---
 
+[📅 My Resume](Resume.pdf)
+
 ## My Recent Research
 
 * 2022: [Multi-NeuS: 3D Head Portraits from Single Image with Neural Implicit Functions](research/multi-neus)
